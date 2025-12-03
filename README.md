@@ -315,34 +315,34 @@ Select "Customise configuration before install"
 
 Under "CPUs" select the `host-passthrough` model
 
-<img src="./img/7.png" width="500" />
+<img src="./img/7.png" width="1000" />
 
 Remove "SPLICE" and Video displays, as well as any other devices you don't need.
 
-<img src="./img/8.png" width="500" />
+<img src="./img/8.png" width="1000" />
 
 Under NIC select `virtio` device model for better network performance
 
-<img src="./img/9.png" width="500" />
+<img src="./img/9.png" width="1000" />
 
 Next click "Add hardware" --> PCI Host Device, and select your dGPU
 
-<img src="./img/10.png" width="500" />
+<img src="./img/10.png" width="600" />
 
 Repeat for every PCI device you want to pass-through.
 *Note: The NVMe PCI bridge may not show here. In this case just skip it.*
 
-<img src="./img/11.png" width="500" />
+<img src="./img/11.png" width="1000" />
 
 Add the virtio-win.iso
 "Add Hardware" --> Storage --> Select or create custom storage
 
-<img src="./img/13.png" width="500" />
+<img src="./img/13.png" width="600" />
 
 You can also choose to pass-through any USB devices.
 *Note: These USB devices will be unavailable to the host for as long as the VM is powered on. For a switchable host/guest keyboard look [section 4.4](#4.4%20Mouse%20&%20Keyboard).*
 
-<img src="./img/12.png" width="500" />
+<img src="./img/12.png" width="600" />
 
 You might be able to run the VM with just these steps, however I recommend looking through the next section first.
 
@@ -550,7 +550,7 @@ Now open virt-manager
 Under your VM's settings, go to `NIC` and change `Network source` to `Bridge device`.
 In the `Device name` field, type in the name of your previously created interface.
 
-<img src="./img/n8.png" width="500" />
+<img src="./img/n8.png" width="1000" />
 
 The VM should now be in the same subnet as your host device
 
