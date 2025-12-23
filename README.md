@@ -22,7 +22,7 @@
 	* [5. Win 11 install + TPM check skip](#Step%205%20Win%2011%20install%20+%20TPM%20check%20skip)
 	* [6. Network Bridge (optional)](#Step%206%20Network%20Bridge%20(optional))
 * [Troubleshooting](#Troubleshooting)
-	* [1. QEMU Error/1:1 IOMMU mapping](#QEMU%20Error/1%3A1%20IOMMU%20mapping)
+	* [1. QEMU Error/1:1 IOMMU mapping](#QEMU%20Error/1∶1%20IOMMU%20mapping)
 
 ## Introduction & considerations
 
@@ -557,7 +557,7 @@ In the `Device name` field, type in the name of your previously created interfac
 The VM should now be in the same subnet as your host device
 
 ## Troubleshooting
-### QEMU Error/1:1 IOMMU mapping
+### QEMU Error/1∶1 IOMMU mapping
 **Symptoms:**
 - When attempting to start the VM, QEMU fails with error: 
 <br><br> `(...) 0000:03:00.0 failed to setup container for group 15: Failed to set group` <br> `container: Invalid argument`
