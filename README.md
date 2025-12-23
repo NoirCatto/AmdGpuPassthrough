@@ -21,6 +21,8 @@
 			* [4.5 Audio passthrough](#4.5%20Audio%20passthrough)
 	* [5. Win 11 install + TPM check skip](#Step%205%20Win%2011%20install%20+%20TPM%20check%20skip)
 	* [6. Network Bridge (optional)](#Step%206%20Network%20Bridge%20(optional))
+* [Troubleshooting](#Troubleshooting)
+  * [1. QEMU Error/1:1 IOMMU mapping](#QEMU%20Error/1:1%20IOMMU%20mapping)
 
 ## Introduction & considerations
 
@@ -554,6 +556,27 @@ In the `Device name` field, type in the name of your previously created interfac
 
 The VM should now be in the same subnet as your host device
 
+## Troubleshooting
+### QEMU Error/1:1 IOMMU mapping
+**Symptoms:**
+- When attempting to start the VM, QEMU fails with error: 
+<br><br> `(...) 0000:03:00.0 failed to setup container for group 15: Failed to set group` <br> `container: Invalid argument`
+<br><br>The ID and group match up with my GPU's PCI ID and IOOMU group.
+<br><br>
+- Running `sudo dmesg | grep IOMMU` I found in the output:
+<br><br>`vfio-pci 0000:03:00.0: Firmware has requested this device have a 1:1 IOMMU mapping, rejecting configuring the device without a 1:1 mapping. Contact your platform vendor.`
+
+This has begun happening after I updated BIOS on my motherboard *(Gigabyte X870E AORUS PRO X3D ICE)*
+
+**Solution:**<br><br>
+Boot into BIOS. Several features need to be turned off/disabled[^1to1mapping]:
+- Kernel DMA Protection
+- Pre-boot DMA Protection
+- SMEE
+- TSME
+
+Some of these may be buried deep under the advanced AMD settings. With these features turned off, everything began working correctly once more.
+
 
 ## Sources & Footnotes:
 https://github.com/bryansteiner/gpu-passthrough-tutorial/tree/master
@@ -568,3 +591,4 @@ https://github.com/bryansteiner/gpu-passthrough-tutorial/tree/master
 [^singlegpupass]:[Complete Single GPU Passthrough (github.com)](https://github.com/QaidVoid/Complete-Single-GPU-Passthrough)
 [^audiopass]: [Audio Passthrough (wiki.archlinux.org)](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF#Passing_audio_from_virtual_machine_to_host_via_PipeWire_directly)
 [^netbridge]: [Network bridge (wiki.archlinux.org)](https://wiki.archlinux.org/title/Network_bridge)
+[^1to1mapping]: [RX 6800 XT GPU Passthrough Not Working Despite Successful vfio-pci Binding (reddit.com)](https://www.reddit.com/r/VFIO/comments/1p1sw5p/help_needed_rx_6800_xt_gpu_passthrough_not/)
