@@ -22,7 +22,7 @@
 	* [5. Win 11 install + TPM check skip](#Step%205%20Win%2011%20install%20+%20TPM%20check%20skip)
 	* [6. Network Bridge (optional)](#Step%206%20Network%20Bridge%20(optional))
 * [Troubleshooting](#Troubleshooting)
-  * [1. QEMU Error/1:1 IOMMU mapping](#QEMU%20Error/1:1%20IOMMU%20mapping)
+	* [1. QEMU Error/1:1 IOMMU mapping](#QEMU%20Error/1%3A1%20IOMMU%20mapping)
 
 ## Introduction & considerations
 
